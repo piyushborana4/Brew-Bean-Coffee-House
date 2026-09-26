@@ -1,0 +1,6 @@
+{
+  "name": "Brew & Bean Coffee House",
+  "description": "A modern, premium coffee shop website featuring specialty coffee, menu filtering, interactive cart, gallery lightbox, and cozy aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
