@@ -75,6 +75,21 @@
       <p class="preloader-text">Brewing something special...</p>
       <div class="preloader-bar"></div>
     </div>
+    <script>
+      (function() {
+        function removePreloader() {
+          var p = document.getElementById('preloader');
+          if (p && !p.classList.contains('fade-out')) {
+            p.classList.add('fade-out');
+            setTimeout(function() {
+              if (p && p.parentNode) p.parentNode.removeChild(p);
+            }, 700);
+          }
+        }
+        window.addEventListener('load', removePreloader);
+        setTimeout(removePreloader, 800);
+      })();
+    </script>
 
     <!-- Scroll Progress Indicator -->
     <div id="scroll-progress"></div>
@@ -1315,6 +1330,6 @@
     </a>
 
     <!-- Application Script -->
-    <script src="/script.js"></script>
+    <script type="module" src="/script.js"></script>
   </body>
 </html>

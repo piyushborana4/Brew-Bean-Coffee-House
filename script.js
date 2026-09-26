@@ -5,24 +5,24 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   /* ==========================================================================
-     1. Preloader Handling
+     1. Preloader Handling (Guaranteed smooth dismissal)
      ========================================================================== */
-  const preloader = document.getElementById('preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
+  function dismissPreloader() {
+    const preloader = document.getElementById('preloader');
+    if (preloader && !preloader.classList.contains('fade-out')) {
+      preloader.classList.add('fade-out');
       setTimeout(() => {
-        preloader.classList.add('fade-out');
-        setTimeout(() => preloader.remove(), 700);
-      }, 500);
-    });
-    // Fallback if load already fired
-    if (document.readyState === 'complete') {
-      setTimeout(() => {
-        preloader.classList.add('fade-out');
-        setTimeout(() => preloader.remove(), 700);
-      }, 500);
+        if (preloader.parentNode) {
+          preloader.parentNode.removeChild(preloader);
+        }
+      }, 700);
     }
   }
+
+  // Smooth dismissal once DOM is loaded with failsafe
+  setTimeout(dismissPreloader, 600);
+  window.addEventListener('load', dismissPreloader);
+  setTimeout(dismissPreloader, 1500);
 
   /* ==========================================================================
      2. Theme Toggle (Dark / Light Mode)
